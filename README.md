@@ -9,7 +9,7 @@ documentation only; the game project itself (C++, Unreal content) lives in the t
 and will be mirrored after the jam. Links into source files therefore do not resolve here.
 
 - Trailer / gameplay video: https://youtu.be/2YIpdvosupo
-- The game on itch.io: *(link follows with the submission)*
+- The game on itch.io (Windows download): https://rharness.itch.io/sotto-voce-the-cut
 
 ## Start here
 | File | What it is |

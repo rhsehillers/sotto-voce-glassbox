@@ -1,0 +1,53 @@
+{
+    "client": "megajam",
+    "contractor": "musikstudio",
+    "status": "delivered",
+    "history": [
+        {
+            "at": "2026-11-12T12:28:21+01:00",
+            "action": "new"
+        },
+        {
+            "at": "2026-11-12T13:05:34+01:00",
+            "action": "release",
+            "said": "Ja, jetzt übergeben (Antwort im Chat auf: Musikauftrag jetzt formell an den Musik-PM übergeben?)",
+            "version": 1,
+            "files": 1
+        },
+        {
+            "at": "2026-11-12T13:20:07+01:00",
+            "action": "deliver",
+            "said": "alles übergeben damit es im repo landet und der kollege sich auch anhören kann. gerne auch mit der art vorschau als html gerüst wie du für mic hgebaut hast, dass er es im browser öffnen kann.",
+            "delivery": 1,
+            "files": 9
+        },
+        {
+            "at": "2026-11-12T15:46:47+01:00",
+            "action": "rework",
+            "said": "bitte noch einmal auftrag für musik pm öffnen (für Lieferung 2)"
+        },
+        {
+            "at": "2026-11-12T15:53:55+01:00",
+            "action": "deliver",
+            "said": "Ja, übergeben",
+            "delivery": 2,
+            "files": 42
+        }
+    ],
+    "release": 1,
+    "hash": "8d97909da1163f6c690d09c838f5544154defc1800e7958b1331c0037b52f9a8",
+    "deliveries": [
+        {
+            "n": 1,
+            "at": "2026-11-12T13:20:07+01:00",
+            "files": 9,
+            "bytes": 135945398
+        },
+        {
+            "n": 2,
+            "at": "2026-11-12T15:53:55+01:00",
+            "files": 42,
+            "bytes": 146691727
+        }
+    ]
+}

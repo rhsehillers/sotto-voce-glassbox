@@ -1,0 +1,74 @@
+{
+    "cage": "megajam-balancing",
+    "repo": "work",
+    "commit": "2f83c479e98f62ca99a7da7cb00d19938369f211",
+    "paths": [
+        "bericht.md",
+        "testplan.md",
+        "vorschlag-balancing.csv",
+        "vorschlag-schedule.csv",
+        "sim/README.md",
+        "blind/comprehension.md",
+        "analysis/exploits/findings.md",
+        "analysis/map-scan/findings.md",
+        "analysis/difficulty/out/summary.txt",
+        "analysis/sim-review/review.txt"
+    ],
+    "files": [
+        {
+            "path": "analysis/difficulty/out/summary.txt",
+            "bytes": 4039,
+            "sha256": "6be59af09b0ada39f16608e986de67b079148eaf65f55ba08588d5e592aae98a"
+        },
+        {
+            "path": "analysis/exploits/findings.md",
+            "bytes": 5673,
+            "sha256": "4a785b26edec5c31b863d453d7252b53f4471ab825e068bca9078ee40bed985a"
+        },
+        {
+            "path": "analysis/map-scan/findings.md",
+            "bytes": 6506,
+            "sha256": "cf74809b2fe160614a610026fa1cf828b90bc3602767ba4583fdc2912fcadc80"
+        },
+        {
+            "path": "analysis/sim-review/review.txt",
+            "bytes": 8549,
+            "sha256": "cf4c2db98971f7cc19bb210e8fc4167507fec0aa15d4add3ac9b08c1b96b6ba9"
+        },
+        {
+            "path": "bericht.md",
+            "bytes": 19809,
+            "sha256": "7c71c84433ba6c46e228b38850567777f83e9e0a11b43767f817d50bf77d16df"
+        },
+        {
+            "path": "blind/comprehension.md",
+            "bytes": 6417,
+            "sha256": "2190710a41d558dcca1e342fae2b093c202666cc9cebdd4ba40dbecd2543292c"
+        },
+        {
+            "path": "sim/README.md",
+            "bytes": 16874,
+            "sha256": "5b71dd344478a3a50a6e432d37da743ef9bc8ccc09be14c1134a2a3be6efbb34"
+        },
+        {
+            "path": "testplan.md",
+            "bytes": 6738,
+            "sha256": "1ffea40b61b04c1916b322f6d3a26717701f84dd8cdc751521da83efcc5e8295"
+        },
+        {
+            "path": "vorschlag-balancing.csv",
+            "bytes": 1332,
+            "sha256": "08ffe04b598c51bef7fc7eb0b696d6b65120de8b79a107a00dc9851c746a2a4d"
+        },
+        {
+            "path": "vorschlag-schedule.csv",
+            "bytes": 1378,
+            "sha256": "305805f7cce579cb21b53dff1372be12a5bb43db7eb9b1e60acd4b27165985aa"
+        }
+    ],
+    "user_said": "eintragen und auch den harness report mit verweis dass ein harness lief mit ins git",
+    "at": "2026-11-15T09:44:54+01:00",
+    "scan": "no findings",
+    "via": "CTO (export.php)",
+    "note": "Data from a cage. Files marked do_not_run are code: read, never execute on the host (cage code runs only in sandbox/evaluate.php)."
+}

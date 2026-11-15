@@ -1,0 +1,20 @@
+{
+    "cage": "megajam-konzepte",
+    "repo": "work",
+    "commit": "42e4a109572ae68983045363fdcf0499273c5239",
+    "paths": [
+        "konzepte/konzept-a-sotto-voce.md"
+    ],
+    "files": [
+        {
+            "path": "konzepte/konzept-a-sotto-voce.md",
+            "bytes": 48774,
+            "sha256": "4e54b6c07e1c57fa32c1b12ea0b5d5b250b472489f35e691fba28a5fc3e778d8"
+        }
+    ],
+    "user_said": "Konzept A ggf ins repo für den gewinnpunkt glassbox",
+    "at": "2026-11-12T13:40:48+01:00",
+    "scan": "no findings",
+    "via": "CTO (export.php)",
+    "note": "Data from a cage. Files marked do_not_run are code: read, never execute on the host (cage code runs only in sandbox/evaluate.php)."
+}

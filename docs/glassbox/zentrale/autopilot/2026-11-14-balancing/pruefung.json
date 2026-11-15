@@ -1,0 +1,183 @@
+{
+    "id": "megajam/2026-11-14-balancing",
+    "at": "2026-11-15T00:03:41+01:00",
+    "hash": "cbbf65bf71cc96e99d1ceb1b6653eb5ed7bc416c6691cf803056e91b818f1d8c",
+    "ampel": "yellow",
+    "checks": [
+        {
+            "name": "request complete",
+            "level": "green",
+            "detail": "front matter AND required sections present"
+        },
+        {
+            "name": "budget inside the frame",
+            "level": "green",
+            "detail": "rounds, minutes, week, 5-h window inside the frame"
+        },
+        {
+            "name": "free run",
+            "level": "yellow",
+            "detail": "the goal has 630 characters - a free run gets the user's words, not a plan; Hypotheses AND Done when stay sealed outside"
+        },
+        {
+            "name": "size limit",
+            "level": "green",
+            "detail": "cage folders may grow by 1.0 GB; the watchdog stops at that OR below 30 GB free on C:"
+        },
+        {
+            "name": "cage project exists",
+            "level": "green",
+            "detail": "megajam-balancing, platform linux, owner megajam"
+        },
+        {
+            "name": "cage hardening intact",
+            "level": "green",
+            "detail": "settings, hooks, MCP, tools, round arguments (sandbox/cage_audit.php; from inside: --live)"
+        },
+        {
+            "name": "no STOP active",
+            "level": "green",
+            "detail": "none"
+        },
+        {
+            "name": "docker running",
+            "level": "green",
+            "detail": "VM 3.8 GB, 4 CPUs"
+        },
+        {
+            "name": "image present",
+            "level": "green",
+            "detail": "zentrale-cage:1"
+        },
+        {
+            "name": "cage resources",
+            "level": "green",
+            "detail": "3 CPUs, 2 GB for the cage; VM 4 CPUs, 3.8 GB"
+        },
+        {
+            "name": "VM memory",
+            "level": "green",
+            "detail": "0 running cage(s)  + this one = 2 GB allowed vs 3.8 GB VM"
+        },
+        {
+            "name": "host memory",
+            "level": "green",
+            "detail": "4.9 GB free"
+        },
+        {
+            "name": "disk C:",
+            "level": "green",
+            "detail": "97 GB free (watchdog stops below 30 GB)"
+        },
+        {
+            "name": "platform tests current",
+            "level": "green",
+            "detail": "installed 2.1.309 (Claude Code), register verified with 2.1.309"
+        },
+        {
+            "name": "no secrets in the cage folders",
+            "level": "green",
+            "detail": "40 files checked (names AND the values of secret user variables)"
+        },
+        {
+            "name": "deliveries",
+            "level": "green",
+            "detail": "13 file(s), 0.1 MB -> inbox/2026-11-14-balancing/ (read-only in the cage)"
+        },
+        {
+            "name": "weekly plan",
+            "level": "green",
+            "detail": "7 % last known (probe failed) + 10.0 pp = 17 % (measured again at start)"
+        },
+        {
+            "name": "5-hour window estimate",
+            "level": "yellow",
+            "detail": "a free run picks its agents: the highest rate of all earlier rounds, 69 pp/h (25 rounds; solo up to 9 pp/h (5), multi-agent up to 69 pp/h (10)); from 0 % the stop at 80 % comes after about 70 min at that rate - BEFORE the time limit of 240 min: fewer max_turns, a lighter model OR a shorter run"
+        },
+        {
+            "name": "windows updates",
+            "level": "yellow",
+            "detail": "3 update(s) pending: Dell, Inc. - Firmware - 0.0.0.90; Dell, Inc. Firmware Driver Update (0.1.53.0); Microsoft Corporation AudioProcessingObject Driver Update (1.0.4.55794 - install AND restart before the start"
+        }
+    ],
+    "deliver": [
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/rahmen.md",
+            "target": "team/rahmen.md",
+            "bytes": 8608,
+            "sha256": "01fca927d860bced529a0347b3377e2c8e687d5d8db7e54d52c973b75f977775"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/map.json",
+            "target": "level/map.json",
+            "bytes": 18846,
+            "sha256": "a1f0543d0f0986112800f60adbbfee6222d4e2f9248ed188235a153cd5baf560"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/data/balancing.csv",
+            "target": "data/balancing.csv",
+            "bytes": 3773,
+            "sha256": "b4431a4935d8a5573c65c8895f727236fed189bba3a53196d19ea58ac4dddcd9"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/data/npcs.csv",
+            "target": "data/npcs.csv",
+            "bytes": 578,
+            "sha256": "638b0da0f26de35ceaff4312cad466702c24d4b7ffd3e930b336701a4e098e71"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/data/schedule.csv",
+            "target": "data/schedule.csv",
+            "bytes": 2102,
+            "sha256": "be57f38a2df047fb5b2cbd0aa8c8bddd1ed6e29d2321886c9b98637fa8b18886"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/data/phases.csv",
+            "target": "data/phases.csv",
+            "bytes": 223,
+            "sha256": "99181912b20e7c8b9c4abd4492fed408aaae7b2da3ec9dc0f6f52dddaa51e831"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/data/notebook.csv",
+            "target": "data/notebook.csv",
+            "bytes": 922,
+            "sha256": "5382c914c47adaa64b19373a68c80e332bfb70f4ae21b84a59a74be087e4e73f"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/model/SVSuspicionModel.h.md",
+            "target": "model/SVSuspicionModel.h.md",
+            "bytes": 5363,
+            "sha256": "147a3def41490d3cbe1b1c421b7d14824638b119f1ec2c7dc2e3c9f2650a5459"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/model/SVSuspicionModel.cpp.md",
+            "target": "model/SVSuspicionModel.cpp.md",
+            "bytes": 2465,
+            "sha256": "438a14bf4a5a59b925ca9b505f0a3bc1fa2f0981e52d858015fde2f480ef404a"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/model/SVSuspicionComponent.cpp.md",
+            "target": "model/SVSuspicionComponent.cpp.md",
+            "bytes": 8670,
+            "sha256": "2678eeb5ec6565b4c843330463947caa312ed06312c0b62fda2b90644288b1ba"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/model/SVGuard.cpp.md",
+            "target": "model/SVGuard.cpp.md",
+            "bytes": 17919,
+            "sha256": "770c723902e8dbbcba959ed86507721f07418d438e27df94528f2f651b8ec4fa"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/model/SVChangingScreen.cpp.md",
+            "target": "model/SVChangingScreen.cpp.md",
+            "bytes": 12422,
+            "sha256": "8dbb35feebee33c6c201629edb7403c77dd6d8b03059867c1e7ca757566bf5ab"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-14-balancing/in/model/SVCueValve.cpp.md",
+            "target": "model/SVCueValve.cpp.md",
+            "bytes": 3313,
+            "sha256": "a83a6862884adcb3d860fccc38298328a181ade089d662ef46e5192730ac61a8"
+        }
+    ]
+}

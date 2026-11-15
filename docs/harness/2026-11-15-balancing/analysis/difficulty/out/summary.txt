@@ -1,0 +1,43 @@
+DIFFICULTY ESTIMATE - Sotto Voce: The Cut (15.11.2026). Scripts: ../agent.py ../session.py ../run_difficulty.py
+All human-behaviour numbers are OWN ASSUMPTIONS (no data on real players). Bands = optimistic / central / pessimistic profile.
+
+PLAYER MODEL
+- Agent drives svsim.world.Sim per tick (sim/ untouched). Intended-route skeleton; reactive evasion (steps out of the
+  guard's line of sight / backs off when an eye visibly rises, after a reaction time; pushes through after N evasions).
+- 14 mistake classes (own clothes in the wings, untimed change, each lever missing, smock on stage, ignores Brac's 4 m,
+  corridor unchecked, no shaft escape, running, creeping in sight, wings exploration with curiosity lever pulls, no map
+  to box 7). Novice draws each with p 0.35-0.9, practised 0.05-0.10.
+- Skill noise: reaction 0.6-1.3 s (practised 0.35-0.6), notices the eye at NoticeLevel+0.10 (-0.05), window reaction
+  0.5-3 s, hesitation 0.5-3 s per leg, +-30 % error on the "6 m" change distance; 20 % of novices wait for the interval.
+- Learning: the class blamed by the catch (phase + guard + reason) is fixed with p 0.7 (0.9), any other with 0.10
+  (0.30) per failed attempt; delays x0.85 per attempt. Real time = 45 s orientation + evenings + 6 s per restart + film.
+- Validation: no-mistake agent wins 95/100 (scripted route 200/200; the gap is the post-theft escape past Brac).
+
+RESULTS (400 sessions per row): see profiles.txt / profiles.csv / attempts_hist.csv
+                       caught before 1st win (p25/p50/p90)   minutes to 1st win (p25/p50/p90)   P(win<=10 min)  P(<=15 min)
+novice optimistic      1 / 2 / 4                             3.7 / 5.4 / 11.5                    0.85            0.95
+novice central         2 / 3 / 6                             5.0 / 7.4 / 16.3                    0.68            0.88
+novice pessimistic     4 / 5 / 10                            7.7 / 10.6 / 21.4                   0.44            0.72
+practised optimistic   0 / 0 / 1   (1st try 88 %)            1.3 / 1.5 / 3.1                     1.00            1.00
+practised central      0 / 0 / 1   (1st try 74 %)            1.4 / 2.4 / 4.2                     0.99            1.00
+practised pessimistic  0 / 0 / 2   (1st try 60 %)            1.6 / 2.9 / 5.9                     0.98            1.00
+
+TOP CATCH POINTS (novice central, 1388 catches / 400 sessions; catch_points.csv, catch_hotspots.csv)
+ 1 box corridor east / box 7 door, y 1050, x 900..1500  (Gaspard, usher, Valcourt; WrongZone) ~35 % of all catches
+ 2 chorus screen 2 (1545,-860) - Pompier hears the change and comes to look (BehindScreen) 7 %
+ 3 wings, Pompier's L (731,-1150) in own clothes (WrongZone) 6 %; explore detours (970,-1100) 2 %
+ 4 box 7 (1400,1416) seen through the door from the corridor by Gaspard (WrongZone) 6 %
+ 5 stage near the flats opening (989,-716) / (869,-424): smock on stage, seen by Pompier / Gaspard 8 %
+ practised: escape past Brac's desk (75..145, -570..-750) 13 %, screen 2 10 %, box 7 door 9-12 %
+ (agrees with sim-review: escape after the theft is knife-edge near Brac and at (200,-1150) Pompier)
+
+WHAT EACH MISTAKE COSTS: mistakes.txt (single attempt with one class; leave-one-out on novice sessions)
+SKILL SWEEPS: skills_partial.txt (reaction / notice / window reaction: no effect beyond noise; hesitation +1.4 min)
+SENSITIVITY (novice central, 200 sessions, Min/Max): sensitivity.txt. ChangeNoiseRadius rows are agent-artifacts
+  (the agent uses the CSV radius as its judged safe distance) - not a valid estimate.
+
+VERDICT: a first-time jury member is caught ~3 times (band 2-5) and needs ~7.5 min (band 5-11 min median) for the first
+win; ~1 in 3 (band 1 in 7 .. 1 in 2) has not won after 10 min, ~1 in 8 (1 in 20 .. 1 in 4) not after 15 min.
+Borderline for a 10-15 min jury; difficulty is knowledge (which lever lures whom, robe for the stage, shaft escape,
+where box 7 is), not reflexes. Confidence: low-medium (model of humans unvalidated; comprehension without HUD texts
+could push novices to the pessimistic band or beyond).

@@ -1,0 +1,92 @@
+SIM FIDELITY REVIEW - sim/ (svsim) vs inbox/2026-11-14-balancing/model/*.md
+Independent reviewer, 15.11.2026. sim/ was NOT modified. Evidence files in this folder:
+  test_model.py / test_model.txt     54 checks: model maths vs hand values from the C++, staged behaviour checks
+  perturb.py / perturb.txt           intended route under delays, interaction times, tuning and assumption variants
+  close_calls.py / close_calls.txt   peak eye per guard over 200 seeds, with time and place
+  escape.py / escape.txt             hesitation on the escape leg (the tightest part)
+  calibrate_acceptance.txt           calibrate.py with acceptance 40 / 60 / 82 / 100
+
+CHECK 1 - reproduce the claims
+  calibrate.py (30 runs): reproduced exactly as in sim/README.md. 14 of 17 rows within 1.2 s.
+    Three rows are not within ~1 s:
+      box corridor empty until  measured ~47  sim 40.1 (-6.9)  usher re-enters at the proscenium door
+      Gaspard back at his post  measured ~58  sim 54.8 (-3.2)  (59.1 if "back" means "in front of the box 7 door")
+      Pompier round, finale     ~28 (acts 1/2 only)  sim 24.7  (the finale wait is 2.0 s, not 2.5 s)
+    The README explains these by changing what "back" means. That is plausible but unproven. So "within ~1 s of every
+    measurement" is overstated. "Within ~1 s once the ambiguous rows are re-read" is accurate.
+  intended route --runs 200: 200/200 ending A, score taken t 38.0, end t 45.3 (all seeds identical). Reproduced.
+
+CHECK 2 - suspicion maths (SVSuspicionModel.cpp/.h) - VERDICT: FAITHFUL 1:1
+  svsim/model.py fill_rate/step/hearing_radius/hears_steps follow SVSuspicionModel.cpp line by line: range x
+  Clamp(light,0.05,1), additive base with the biggest item as the reason, Lerp(1,FarFactor,d/R), busy/idle, max(0,esc),
+  decay, clamp, gait mapping, and the wall factor. All 30 Part-1 checks pass (test_model.txt). This includes the
+  dark range, the light clamp, the seer cut at 400, run+zone+close at escalation 1.5, and walk through a wall 80 / run 400.
+  The CSV keys are exactly the 17 read in USVSuspicionComponent::BeginPlay (l.33-49). FarFactor, ResumeLevel and
+  FillChanging keep the header defaults, as in the code.
+  BuildInput / TickComponent (guard.py l.417-481) match SVSuspicionComponent.cpp l.121-215: 3D eye distance, the cone
+  with the 3D direction, the 65/20 cm and 25 cm traces, the Notice+0.05 hearing push, and the hearing gate order.
+  Game quirks the sim reproduces faithfully (game findings, not sim errors):
+    - The cone test uses the 3D eye->actor direction (l.146-148). Standing, she is invisible within ~121 cm straight in
+      front of a 30-degree guard. Crouched (sim z 55), she is invisible within ~180 cm. CloseRange 160 therefore only
+      fills in the 121..160 cm band, and never when crouched. (test_model T2)
+    - Behind the screen BuildInput returns Distance 0, and hearing is not gated by IsBehindScreen (l.195). If she ever
+      moves while still flagged "behind screen", every guard "hears" her from anywhere. The sim clears the flag when
+      the change ends. When the game clears it is not in the material. (T7) Hand test: after a change, does any distant
+      guard's eye jump to 0.30?
+
+CHECK 3 - guard behaviour (SVGuard.cpp, SVChangingScreen.cpp, SVCueValve.cpp)
+  Suspicious state: confirmed. SuspiciousLevel is read (component l.49) but used nowhere in the material. The state
+    goes Suspicious at NoticeLevel 0.25 (l.207). In that state the guard stops and turns to her (LookAtPlayer, guard
+    l.268-276). He never walks toward her because of what he sees. rahmen.md ("suspicious 0.6, he comes to look") is
+    wrong against the code. The sim follows the CODE: guard.py l.476-481, test T1. Consequence for balancing: a
+    SuspiciousLevel change has no gameplay effect (it is not a lever).
+  OnCue (l.286-309): re-pull while Investigate/Return is accepted, and Suspicious/Alarm is rejected. Sim identical
+    (guard.py l.279-293, T4). One deviation: the sim adds `if bOffStage: return False` (l.282, README assumption 12).
+    The C++ OnCue has NO bOffStage test, so the usher and Valcourt are cue targets in the interval. What a hidden
+    pawn with collision off does with that MoveTo depends on the engine (it probably does not move, and the stale
+    request survives into Act 2). This does not matter for the Act-1 intended route. It does matter for any interval
+    route ("reward for watching").
+  Investigate / Return / single point: identical structure (guard.py l.378-401 vs C++ l.543-580). This includes the
+    gadget lure and WaitLeft = max(InvestigateTime, distract+2).
+  Screen catch (guard Tick l.462-473): Dist2D(player, guard) <= 200 while IsChangingCostume, with no sight and no
+    distraction test. Sim identical (guard.py l.330-334, T5: a distracted guard facing away at 195 cm catches her,
+    at 205 cm he does not). The screen walk sequence (Corner -> Door -> Hidden, change starting at the door point,
+    visible while stepping in) matches SVChangingScreen.cpp l.266-315.
+  Cue cooldown (SVCueValve l.408): now - LastFired >= 20, per valve. Sim identical (T6). The initial LastFired is not
+    in the material; the sim assumes the lever is ready at t=0.
+  ApplyPhase at the theft: identical function. Who calls it is not in the material (assumption 10). Tested variants
+    (Hunt-row NPCs only / nobody re-scheduled): the intended route stays 100 %.
+
+CHECK 4 - README assumptions that could flatter the game (intended route, perturb.txt)
+  1 outside-zone allow: with strict, 0 % (caught by the Pompier at the start). The only effect on the intended route is
+    the spawn. strict would make the game unwinnable from the first second, so allow (or a cold open) is effectively
+    forced. Caveat: under allow, own clothes are legal in the whole pit/desk strip x 1200..1600 (y -1400..800) and the
+    y 800..900 band. Any exploit found there depends on this unconfirmed rule.
+  11 walk vs teleport at phase change: no effect on the intended route (it ends at 45 s, the interval starts at 150 s).
+    The effect is bounded to a few seconds at phase starts (e.g. Gaspard into box 7 at 2:30).
+  8 interaction ranges 150 cm / instant actions: the route stands 70-108 cm from each interactable. Levers 1 s each +
+    score 1 s + shaft 2 s: still 100 % (end 51.3).
+  instant shaft: hidden transit 1-5 s: 100 %.
+  film = pause: with the world running 10 s during the film: 100 %.
+  3 light: lit is worst case for sight (shadow: 100 %).
+  player execution: a visible pause of 1-8 s at 9 points before the escape: 100 % everywhere. WalkSpeed 255 (path 18 %
+    longer): 100 %.
+  NOT robust - the escape leg (close_calls.txt, escape.txt): after the theft everyone sees through costumes within 400
+    (escalation). Over 200 seeds, Brac peaks >= 0.5 in 52 seeds (max 0.69) and the Pompier in 34 seeds (max 0.63). She
+    escapes only because she keeps walking. A hesitation of 2 s at (75,-745), (200,-760) or (200,-900): 37-60 % caught
+    by Brac. 2 s at (200,-1150): 27 % caught by the Pompier. The Monte Carlo varies only guard jitter, not the player,
+    so "200/200" means "a frame-exact player always makes it". It is not a success rate for people.
+
+CHECK 5 - stop distance 82 cm - VERDICT: JUSTIFIED, does not hide another error
+  C++ MoveToLocation(Where, 40, bStopOnOverlap=true, ...) (SVGuard l.241). With bStopOnOverlap, UE's reach test adds the
+  agent radius: 40 + capsule 42 (l.29) = 82. This is engine behaviour, not a free fit (reviewer's own knowledge of UE;
+  not in Engram). The evidence is strong: both measured turn points are 82 cm short along two different approach
+  directions. East: x 1218 = 1300-82. South: (1290.5,-531.4) is exactly 82 cm short on the line from (1218,-1150).
+  The wait positions are stationary, so the 1-Hz log is exact there.
+  calibrate_acceptance.txt: the timing rows move <= 1.5 s between 40 and 100, so 82 is not hiding a timing error. 40
+    fits the round time better (28.7 vs 27.0) but misses both turn points by 42 cm. The ~1 s short round at 82 matches
+    the missing braking (1400) and corner slow-down.
+  Side effect, as in the code: single-point NPCs (Brac, Valcourt) stop 82 cm short. The settle test needs < 60
+    (l.505), so after a cue they never settle or face FacingYaw. They look around their arrival direction. This changes
+    who sees the escape leg: with settle_radius 90, a 2 s pause at (200,-900) gives 0 % instead of 50 %. Result
+    direction depends on it, so it is worth one hand check: after -svcue=Trap, does Brac end up at his desk facing west?

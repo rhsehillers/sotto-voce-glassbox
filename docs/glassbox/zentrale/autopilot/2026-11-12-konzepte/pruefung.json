@@ -1,0 +1,112 @@
+{
+    "id": "megajam/2026-11-12-konzepte",
+    "at": "2026-11-12T08:36:25+01:00",
+    "hash": "1f7292dd09d4e2c5cd42693d7fddb1fb43a60285c12f1dcc2653f74336ae985e",
+    "ampel": "yellow",
+    "checks": [
+        {
+            "name": "request complete",
+            "level": "green",
+            "detail": "front matter AND required sections present"
+        },
+        {
+            "name": "budget inside the frame",
+            "level": "green",
+            "detail": "rounds, minutes, week, 5-h window inside the frame"
+        },
+        {
+            "name": "free run",
+            "level": "yellow",
+            "detail": "the goal has 640 characters - a free run gets the user's words, not a plan; Hypotheses AND Done when stay sealed outside"
+        },
+        {
+            "name": "size limit",
+            "level": "green",
+            "detail": "cage folders may grow by 1.0 GB; the watchdog stops at that OR below 30 GB free on C:"
+        },
+        {
+            "name": "cage project exists",
+            "level": "green",
+            "detail": "megajam-konzepte, platform linux, owner megajam"
+        },
+        {
+            "name": "cage hardening intact",
+            "level": "green",
+            "detail": "settings, hooks, MCP, tools, round arguments (sandbox/cage_audit.php; from inside: --live)"
+        },
+        {
+            "name": "no STOP active",
+            "level": "green",
+            "detail": "none"
+        },
+        {
+            "name": "docker running",
+            "level": "green",
+            "detail": "VM 3.8 GB, 4 CPUs"
+        },
+        {
+            "name": "image present",
+            "level": "green",
+            "detail": "zentrale-cage:1"
+        },
+        {
+            "name": "VM memory",
+            "level": "green",
+            "detail": "0 running cage(s)  + this one = 3 GB allowed vs 3.8 GB VM"
+        },
+        {
+            "name": "host memory",
+            "level": "green",
+            "detail": "3.2 GB free"
+        },
+        {
+            "name": "disk C:",
+            "level": "green",
+            "detail": "82 GB free (watchdog stops below 30 GB)"
+        },
+        {
+            "name": "platform tests current",
+            "level": "green",
+            "detail": "installed 2.1.309 (Claude Code), register verified with 2.1.309"
+        },
+        {
+            "name": "no secrets in the cage folders",
+            "level": "green",
+            "detail": "40 files checked (names AND the values of secret user variables)"
+        },
+        {
+            "name": "deliveries",
+            "level": "green",
+            "detail": "2 file(s), 0.0 MB -> inbox/2026-11-12-konzepte/ (read-only in the cage)"
+        },
+        {
+            "name": "weekly plan",
+            "level": "green",
+            "detail": "57 % measured now (5-h window 5 %, status allowed) + 6.0 pp = 63 % (measured again at start)"
+        },
+        {
+            "name": "5-hour window estimate",
+            "level": "green",
+            "detail": "earlier rounds on opus rose up to 12 pp/h (median 7, 7 round(s)); from 5 % the stop at 60 % comes after about 273 min at that rate, after the time limit"
+        },
+        {
+            "name": "windows updates",
+            "level": "yellow",
+            "detail": "3 update(s) pending: Dell, Inc. - Firmware - 0.0.0.90; Dell, Inc. Firmware Driver Update (0.1.53.0); Microsoft Corporation AudioProcessingObject Driver Update (1.0.4.55794 - install AND restart before the start"
+        }
+    ],
+    "deliver": [
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-12-konzepte/in/rahmen.md",
+            "target": "team/rahmen.md",
+            "bytes": 1737,
+            "sha256": "1f9af840c24b18d6858a45d4ee3533648b93db76da12a95f701f64b9aeabd77d"
+        },
+        {
+            "src": "C:/laragon/www/zentrale/projects/megajam/autopilot/2026-11-12-konzepte/in/wuensche-und-feedback.md",
+            "target": "team/wuensche-und-feedback.md",
+            "bytes": 2452,
+            "sha256": "3eefe2fd94b945615590712a75b44394d0882a2e0b373eed2e08849b38d86246"
+        }
+    ]
+}
